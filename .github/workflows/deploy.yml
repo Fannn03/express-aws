@@ -17,8 +17,7 @@ jobs:
           HOSTNAME: ${{ secrets.HOSTNAME }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 666 private_key
-          ssh -i private_key ${USERNAME}@${HOSTNAME}
+          ssh -i PRIVATE_KEY ${USERNAME}@${HOSTNAME}
           cd ~/home/ubuntu/express-aws
           git pull origin master
           npm install
