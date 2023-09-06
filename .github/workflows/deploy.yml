@@ -25,7 +25,4 @@ jobs:
 
       - name: Deploy to aws
         run: |
-          cd ~/home/ubuntu/express-aws
-          git pull origin master
-          npm install
-          npm run start
+          ls
