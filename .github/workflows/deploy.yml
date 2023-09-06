@@ -29,5 +29,6 @@ jobs:
             ls -al
             cd /home/ubuntu/express-aws
             git pull origin master
+            nvm use v18.15.0
             npm install
             npm start
