@@ -17,10 +17,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+      
+      - name: Using ssh key
+        uses: webfactory/ssh-agent@v0.7.0
+        with: 
+          ssh-private-key: ${{ secrets.SSH_FILE }}
 
       - name: Deploy to aws
         run: |
-          ssh -i "${{ secrets.SSH_FILE }}" ${{ secrets.USERNAME }}@${{ secrets.HOSTNAME }}
           cd ~/home/ubuntu/express-aws
           git pull origin master
           npm install
