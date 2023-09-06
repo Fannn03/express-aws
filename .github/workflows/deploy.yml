@@ -3,7 +3,7 @@ name: Deploy to express to aws
 on:
   push:
     branches:
-      - "master"
+      - master
 
 jobs:
   deploy:
@@ -11,10 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: '@master'
-          path: './'
+        uses: actions/checkout@v3
 
       - name: Use nodejs
         uses: actions/setup-node@v2
