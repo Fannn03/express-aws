@@ -1,0 +1,30 @@
+name: Deploy to express to aws
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+        
+      - name: Install dependencies
+        uses: npm install
+
+      - name: Deploy to aws
+        run: |
+          ssh -i "${{ secrets.SSH_FILE }}" ${{ secrets.USERNAME }}@${{ secrets.HOSTNAME }}
+          cd ~/home/ubuntu/express-aws
+          git pull origin master
+          npm install
+          npm start

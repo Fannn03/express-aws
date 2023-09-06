@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///home/fann/Documents/Belajar/express-aws/.github/workflows/deploy.yml"
+    }
+}
