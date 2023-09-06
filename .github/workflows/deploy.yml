@@ -10,42 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -  uses: actions/checkout@v2
       - name: Checkout repository
-        env:
-          PRIVATE_KEY: ./belajar-nodejs.pem
-          HOSTNAME: ${{ secrets.HOSTNAME }}
-          USERNAME: ${{ secrets.USERNAME }}
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ./belajar-nodejs.pem ${USERNAME}@${HOSTNAME}
-          cd ~/home/ubuntu/express-aws
-          git pull origin master
-          npm install
-          npm start
+        uses: actions/checkout@v2
 
       - name: Use nodejs v3
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      # - name: Using ssh key
-      #   uses: appleboy/ssh-action@v1.0.0
-      #   with: 
-      #     host: ${{ secrets.HOST }}
-      #     username: ${{ secrets.USERNAME }}
-      #     scripts: |
-      #       whoami
-      #       ls -al
-      #       cd ~/home/ubuntu/express-aws
-      #       git pull origin master
-      #       npm install
-      #       npm start
-      
-      # - name: Using ssh key
-      #   uses: webfactory/ssh-agent@v0.7.0
-      #   with: 
-      #     ssh-private-key: ${{ secrets.SSH_FILE }}
-
-      # - name: Deploy to aws
-      #   run: |
-      #     mkdir test_folder
+      - name: Using ssh key
+        uses: appleboy/ssh-action@v1.0.0
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          scripts: |
+            whoami
+            ls -al
+            cd /home/ubuntu/express-aws
+            git pull origin master
+            npm install
+            npm start
