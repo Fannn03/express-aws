@@ -30,4 +30,4 @@ jobs:
             cd /home/ubuntu/express-aws
             git pull origin master
             npm install
-            pm2 start ./dist/main.js
+            pm2 restart ./dist/main.js
