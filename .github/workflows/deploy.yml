@@ -13,11 +13,11 @@ jobs:
       -  uses: actions/checkout@v2
       - name: Checkout repository
         env:
-          PRIVATE_KEY: ${{ secrets.SSH_FILE }}
+          PRIVATE_KEY: ./belajar-nodejs.pem
           HOSTNAME: ${{ secrets.HOSTNAME }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          echo PRIVATE_KEY
+          chmod 666 PRIVATE_KEY
           ssh -o StrictHostKeyChecking=no -i PRIVATE_KEY ${USERNAME}@${HOSTNAME}
           cd ~/home/ubuntu/express-aws
           git pull origin master
