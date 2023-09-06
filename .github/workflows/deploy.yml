@@ -17,8 +17,7 @@ jobs:
           HOSTNAME: ${{ secrets.HOSTNAME }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          chmod 666 PRIVATE_KEY
-          ssh -o StrictHostKeyChecking=no -i PRIVATE_KEY ${USERNAME}@${HOSTNAME}
+          ssh -o StrictHostKeyChecking=no -i "./belajar-nodejs.pem" ${USERNAME}@${HOSTNAME}
           cd ~/home/ubuntu/express-aws
           git pull origin master
           npm install
