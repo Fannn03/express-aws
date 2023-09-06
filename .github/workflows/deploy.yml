@@ -26,3 +26,4 @@ jobs:
       - name: Deploy to aws
         run: |
           git pull origin master
+          ls
