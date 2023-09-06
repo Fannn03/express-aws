@@ -26,5 +26,3 @@ jobs:
       - name: Deploy to aws
         run: |
           git pull origin master
-          npm install
-          npm run start
