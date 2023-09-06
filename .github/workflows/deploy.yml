@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use nodejs v2
-        uses: actions/setup-node@v2
+      - name: Use nodejs v3
+        uses: actions/setup-node@v3
         with:
           node-version: 16
         
