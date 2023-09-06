@@ -17,11 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-        
+
       - name: Deploy to aws
         run: |
-          ssh -i "${{ secrets.SSH_FILE }}" ${{ secrets.USERNAME }}@${{ secrets.HOSTNAME }}
           cd ~/home/ubuntu/express-aws
-          git pull origin master
-          npm install
-          npm run start
