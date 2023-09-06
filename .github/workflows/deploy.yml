@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -  uses: actions/checkout@v4
+      -  uses: actions/checkout@v2
       - name: Checkout repository
         env:
           PRIVATE_KEY: ${{ secrets.SSH_FILE }}
           HOSTNAME: ${{ secrets.HOSTNAME }}
           USERNAME: ${{ secrets.USERNAME }}
         run: |
-          ssh -i PRIVATE_KEY ${USERNAME}@${HOSTNAME}
+          echo PRIVATE_KEY
+          ssh -o StrictHostKeyChecking=no -i PRIVATE_KEY ${USERNAME}@${HOSTNAME}
           cd ~/home/ubuntu/express-aws
           git pull origin master
           npm install
