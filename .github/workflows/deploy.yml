@@ -10,26 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      -  uses: actions/checkout@v4
       - name: Checkout repository
-        uses: actions/checkout@v4
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_FILE }}
+          HOSTNAME: ${{ secrets.HOSTNAME }}
+          USERNAME: ${{ secrets.USERNAME }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 666 private_key
+          ssh -i private_key ${USERNAME}@${HOSTNAME}
+          cd ~/home/ubuntu/express-aws
+          git pull origin master
+          npm install
+          npm start
 
       - name: Use nodejs v3
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: Using ssh key
-        uses: appleboy/ssh-action@v1.0.0
-        with: 
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          scripts: |
-            whoami
-            ls -al
-            cd ~/home/ubuntu/express-aws
-            git pull origin master
-            npm install
-            npm start
+      # - name: Using ssh key
+      #   uses: appleboy/ssh-action@v1.0.0
+      #   with: 
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USERNAME }}
+      #     scripts: |
+      #       whoami
+      #       ls -al
+      #       cd ~/home/ubuntu/express-aws
+      #       git pull origin master
+      #       npm install
+      #       npm start
       
       # - name: Using ssh key
       #   uses: webfactory/ssh-agent@v0.7.0
