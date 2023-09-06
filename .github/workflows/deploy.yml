@@ -1,14 +1,32 @@
 name: Deploy to express to aws
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
-  deploy:
+  super-lint:
     runs-on: ubuntu-latest
-
     steps:
-      - name: echo hello world
-        uses: echo "hello world"
+      - uses: action/checkout@v2
+      - uses: github/super-linter@v3
+  # deploy:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+
+  #     - name: Use nodejs
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '18.x'
+        
+  #     - name: Install dependencies
+  #       uses: npm install
+
+  #     - name: Deploy to aws
+  #       run: |
+  #         ssh -i "${{ secrets.SSH_FILE }}" ${{ secrets.USERNAME }}@${{ secrets.HOSTNAME }}
+  #         cd ~/home/ubuntu/express-aws
+  #         git pull origin master
+  #         npm install
+  #         npm run start
