@@ -13,7 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: 'master'
+          ref: '@master'
+          path: './'
 
       - name: Use nodejs
         uses: actions/setup-node@v2
